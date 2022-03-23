@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpSummaryWindow" prefHeight="423.0" prefWidth="461.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.net.brach.SummaryWindowController">
+<BorderPane fx:id="bpSummaryWindow" prefHeight="423.0" prefWidth="461.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pl.net.brach.SummaryWindowController">
    <left>
       <HBox prefHeight="229.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
    </left>
@@ -57,7 +57,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lInterestRatio" text="    Stopa odsetkowa:" GridPane.rowIndex="4">
+                  <Label fx:id="lInterestRate" text="    Stopa odsetkowa:" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lsInterestRatio" prefHeight="21.0" prefWidth="253.0" text="#### %" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Label fx:id="lsInterestRate" prefHeight="21.0" prefWidth="253.0" text="#### %" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="18.0" />
                      </font>
