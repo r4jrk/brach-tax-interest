@@ -19,7 +19,7 @@ public class SummaryWindowController {
     public Label lsPaymentDate;
     public Label lsDayCount;
     public Label lsPaidAmount;
-    public Label lsInterestRatio;
+    public Label lsInterestRate;
     public Label lsInterestAmount;
     public Label lsBaseAmount;
 
@@ -28,7 +28,7 @@ public class SummaryWindowController {
         lsPaymentDate.setText(LocalDate.parse(params[1]).format(DATE_FORMAT));
         lsDayCount.setText(params[2]);
         lsPaidAmount.setText(params[3]);
-        lsInterestRatio.setText(params[4]);
+        lsInterestRate.setText(params[4]);
         lsInterestAmount.setText(params[5]);
         lsBaseAmount.setText(params[6]);
     }

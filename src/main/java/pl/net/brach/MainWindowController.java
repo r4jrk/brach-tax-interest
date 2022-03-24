@@ -11,10 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,8 +30,9 @@ public class MainWindowController implements Initializable {
 
     private static final int DAYS_IN_A_YEAR = 365;
     private static final double INTEREST_AMOUNT_THRESHOLD = 8.7; //8,70 zł
-    private static final List<String> DATA_FORMATS = Arrays.asList("dd-MM-yyyy", "dd/MM/yyyy", "ddMMyyyy", "dd.MM.yyyy",
+    private static final List<String> DATE_FORMATS = Arrays.asList("dd-MM-yyyy", "dd/MM/yyyy", "ddMMyyyy", "dd.MM.yyyy",
             "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMdd", "yyyy.MM.dd");
+    private static final String RATES_FILE_DATE_FORMAT = "yyyy-MM-dd";
 
     @FXML
     public BorderPane bpMainWindow;
@@ -42,16 +40,18 @@ public class MainWindowController implements Initializable {
     public DatePicker dpPaymentDate;
     public TextField tfPaidAmount;
     public TextField tfDayCount;
-    public ComboBox<String> cbInterestRatio;
+    public ComboBox<String> cbInterestRate;
     public Button bOK;
     public Button bClose;
     public AnchorPane apMain;
 
     //Calculation fields
+    private LocalDate effectivePaymentDeadline;
+    private LocalDate effectivePaymentDate;
     private long daysDifference = 0;
     private double baseQuota = 0;
     private double baseAmount = 0;
-    private double interestRatio = 0;
+    private double interestRate = 0;
     private double interestAmount = 0;
     private double interestAmountRounded = 0;
     private double baseAmountRounded = 0;
@@ -61,21 +61,21 @@ public class MainWindowController implements Initializable {
     private String paymentDateOutput;
     private String daysDifferenceOutput;
     private String amountPaidOutput;
-    private String interestRatioOutput;
+    private String interestRateOutput;
     private String interestAmountOutput;
     private String interestAmountRoundedOutput;
     private String baseAmountOutput;
     private String baseAmountRoundedOutput;
 
     //Rates
-    private Rates readRates;
+    private Rates rates;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
-        //Populate interest ratios in to a Combo Box
-        cbInterestRatio.getItems().clear();
-        cbInterestRatio.getItems().addAll("8,00 %");
-        cbInterestRatio.getSelectionModel().selectFirst();
+        //Populate interest rates in to a Combo Box
+        cbInterestRate.getItems().clear();
+        cbInterestRate.getItems().addAll("8,00 %");
+        cbInterestRate.getSelectionModel().selectFirst();
 
         //Setup Text Field
         setupTextField(tfPaidAmount);
@@ -84,10 +84,7 @@ public class MainWindowController implements Initializable {
         setupDatePicker(dpPaymentDeadline);
         setupDatePicker(dpPaymentDate);
 
-        Rates rates = new Rates();
-        for (int i = 0; i < rates.readRates.size(); i++) {
-            System.out.println(rates.readRates.get(i));
-        }
+        rates = new Rates();
     }
 
     private Stage getCurrentStage() {
@@ -127,6 +124,7 @@ public class MainWindowController implements Initializable {
                     if (dpPaymentDeadline.getEditor().getText() != null && !dpPaymentDeadline.getEditor().getText().isEmpty() &&
                             dpPaymentDate.getEditor().getText() != null && !dpPaymentDate.getEditor().getText().isEmpty()) {
                         calculateDaysDifference();
+                        getEffectiveInterestRate();
                     }
                 }
         );
@@ -135,7 +133,7 @@ public class MainWindowController implements Initializable {
             @Override
             public String toString(LocalDate date) {
                 if (date != null) {
-                    for (String pattern : DATA_FORMATS) {
+                    for (String pattern : DATE_FORMATS) {
                         try {
                             if (date.isAfter(LocalDate.now())) {
                                 return DateTimeFormatter.ofPattern(pattern).format(LocalDate.now().minusDays(1));
@@ -153,7 +151,7 @@ public class MainWindowController implements Initializable {
             @Override
             public LocalDate fromString(String string) {
                 if (string != null && !string.isEmpty()) {
-                    for (String pattern : DATA_FORMATS) {
+                    for (String pattern : DATE_FORMATS) {
                         try {
                             return LocalDate.parse(string, DateTimeFormatter.ofPattern(pattern));
                         } catch (DateTimeParseException dtpe) {
@@ -161,6 +159,7 @@ public class MainWindowController implements Initializable {
                         }
                     }
                     calculateDaysDifference();
+                    getEffectiveInterestRate();
                 }
                 return null;
             }
@@ -175,7 +174,7 @@ public class MainWindowController implements Initializable {
 
         if (dateInput.length() == 10) { //Full date provided
             LocalDate extractedDate = null;
-            for (String pattern : DATA_FORMATS) {
+            for (String pattern : DATE_FORMATS) {
                 try {
                     extractedDate = LocalDate.parse(dateInput, DateTimeFormatter.ofPattern(pattern));
                 } catch (DateTimeParseException dtpe) {
@@ -192,10 +191,6 @@ public class MainWindowController implements Initializable {
         LocalDate paymentDate = getDateInput("dpPaymentDate");
 
         if (paymentDeadline != null && paymentDate != null) {
-
-            LocalDate effectivePaymentDeadline = null;
-            LocalDate effectivePaymentDate = null;
-
             effectivePaymentDeadline = checkForBankHolidays(paymentDeadline);
             effectivePaymentDate = checkForBankHolidays(paymentDate);
 
@@ -236,7 +231,7 @@ public class MainWindowController implements Initializable {
 
             } catch (FileNotFoundException ex) {
                 if (loopCount > RETRY_COUNT) {
-                    System.out.println("Przekroczono limit powótrzeń połączenia z API NBP.");
+                    System.out.println("Przekroczono limit powtórzeń próby połączenia z API NBP.");
                     break;
                 }
                 //Add one more day to cover the weekends and holidays
@@ -246,6 +241,10 @@ public class MainWindowController implements Initializable {
                 System.out.println("Niepoprawny adres URL do API NBP.");
             } catch (IOException e) {
                 System.out.println("Wystąpił błąd podczas odczytywania danych z API NBP.");
+                if (loopCount > RETRY_COUNT) {
+                    System.out.println("Przekroczono limit powtórzeń próby połączenia z API NBP.");
+                    break;
+                }
             }
         }
 
@@ -262,19 +261,110 @@ public class MainWindowController implements Initializable {
         }
     }
 
-    private void getInterestRatio() {
-        String inputValue = cbInterestRatio.getValue();
+    private void getEffectiveInterestRate() {
+        ArrayList daysSpentArrayList = new ArrayList();
+        ArrayList ratesArrayList = new ArrayList();
 
-        if (inputValue != null && !inputValue.equals("")) {
-            interestRatio = Double.parseDouble(inputValue.replace("%", "").replace(",", ".")) / 100;
-            interestRatioOutput = String.format("%.2f", interestRatio * 100) + " %";
+        LocalDate ratesPeriodStartDate = null;
+        LocalDate ratesPeriodEndDate = null;
+
+        long daysBetweenPaymentDeadlineAndPaymentDate = 0;
+        long daysBetweenPaymentDeadlineAndPeriodEnd = 0;
+        long daysInCurrentPeriod = 0;
+        long periodCounter = 0;
+        long daysLeftToSpend = 0;
+        double nominalRate = 0.0;
+        double intRate = 0.0;
+        long daysSpentSum = 0;
+
+        daysBetweenPaymentDeadlineAndPaymentDate = ChronoUnit.DAYS.between(effectivePaymentDeadline, effectivePaymentDate);
+        daysLeftToSpend = daysBetweenPaymentDeadlineAndPaymentDate;
+
+        for (int i = 1; i < rates.ratesFromFile.size(); i++) { //Start from i = 1, because at i = 0 is header
+
+            if (!rates.ratesFromFile.get(i).get(1).equals("")) { //For last period in Rates CSV endDate is empty, hence assign today's date to ratesPeriodEndDate
+                ratesPeriodEndDate = LocalDate.parse(rates.ratesFromFile.get(i).get(1), DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
+            } else {
+                ratesPeriodEndDate = LocalDate.now();
+            }
+
+            ratesPeriodStartDate = LocalDate.parse(rates.ratesFromFile.get(i).get(0), DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
+
+            daysBetweenPaymentDeadlineAndPeriodEnd = ChronoUnit.DAYS.between(effectivePaymentDeadline, ratesPeriodEndDate);
+
+            if ((effectivePaymentDeadline.isAfter(ratesPeriodStartDate) || effectivePaymentDeadline.isEqual(ratesPeriodStartDate)) &&
+                    (effectivePaymentDate.isAfter(ratesPeriodStartDate) || effectivePaymentDate.isEqual(ratesPeriodStartDate)) &&
+                    (effectivePaymentDeadline.isBefore(ratesPeriodEndDate) || effectivePaymentDeadline.isEqual(ratesPeriodEndDate)) &&
+                    (effectivePaymentDate.isBefore(ratesPeriodEndDate) || effectivePaymentDate.isEqual(ratesPeriodEndDate))) { //Just one period
+                long daysSpent = ChronoUnit.DAYS.between(effectivePaymentDeadline, effectivePaymentDate);
+                interestRate = Double.parseDouble(rates.ratesFromFile.get(i).get(2));
+                daysSpentArrayList.add(daysSpent);
+                ratesArrayList.add(interestRate);
+                break;
+            } else if ((effectivePaymentDeadline.isAfter(ratesPeriodEndDate) || (effectivePaymentDeadline.isEqual(ratesPeriodEndDate)))
+                    && (effectivePaymentDate.isAfter(ratesPeriodEndDate) || effectivePaymentDate.isEqual(ratesPeriodEndDate))) {
+                continue;
+            } else { //Two or more periods
+                periodCounter++;
+                nominalRate = Double.parseDouble(rates.ratesFromFile.get(i).get(2));
+
+                System.out.println("Rates period " + periodCounter + ": Start date: " + ratesPeriodStartDate
+                        + ", End date: " + ratesPeriodEndDate + ". Nominal rate: " + nominalRate);
+
+                long daysSpent = 0;
+
+                if (periodCounter == 1) { //First period of periods
+                    daysSpent = daysBetweenPaymentDeadlineAndPeriodEnd + 1;
+                    daysLeftToSpend = daysLeftToSpend - daysSpent;
+                    daysSpentArrayList.add(daysSpent);
+                    ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                    System.out.println("Days spent in Period 1: " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
+                } else { //Second or further period
+                    daysInCurrentPeriod = ChronoUnit.DAYS.between(ratesPeriodStartDate, ratesPeriodEndDate);
+                    boolean isDaysLeftToSpendPositive = (daysLeftToSpend - daysInCurrentPeriod) > 0;
+
+                    if (isDaysLeftToSpendPositive) { //There will be another period
+                        daysSpent = daysInCurrentPeriod;
+                        daysLeftToSpend = daysLeftToSpend - daysSpent;
+                        daysSpentArrayList.add(daysSpent);
+                        ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                        System.out.println("Days spent in Period " + periodCounter + ": " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
+                        continue;
+                    } else { //There won't be another period
+                        daysSpent = daysLeftToSpend;
+                        daysLeftToSpend = daysLeftToSpend - daysSpent;
+                        daysSpentArrayList.add(daysSpent);
+                        ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                        System.out.println("Days spent in Period " + periodCounter + ": " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
+                        break;
+                    }
+                }
+            }
         }
+
+        for (int j = 0; j < daysSpentArrayList.size(); j++) {
+            daysSpentSum += Long.parseLong((daysSpentArrayList.get(j).toString()));
+            intRate += Double.parseDouble((daysSpentArrayList.get(j).toString())) * Double.parseDouble(ratesArrayList.get(j).toString());
+        }
+
+        // (interestRate == 0) {
+            interestRate = intRate / daysSpentSum;
+        //}
+        daysDifference = daysSpentSum;
+
+        System.out.println("Calculated effective interest rate: " + interestRate);
+
+        interestRateOutput = String.format("%.2f", interestRate) + " %";
+
+        cbInterestRate.getItems().clear();
+        cbInterestRate.getItems().addAll(interestRateOutput);
+        cbInterestRate.getSelectionModel().selectFirst();
     }
 
     private void calculateInterestAmount() {
-        if (daysDifference != 0 && baseQuota != 0 && interestRatio != 0) {
-            interestAmount = (daysDifference * baseQuota * interestRatio) /
-                    (DAYS_IN_A_YEAR + daysDifference * interestRatio);
+        if (daysDifference != 0 && baseQuota != 0 && interestRate != 0) {
+            interestAmount = (daysDifference * baseQuota * interestRate / 100) /
+                    (DAYS_IN_A_YEAR + daysDifference * interestRate / 100);
             interestAmountOutput = String.format("%.2f", interestAmount) + " zł";
 
             interestAmountRounded = Math.round(interestAmount);
@@ -309,7 +399,7 @@ public class MainWindowController implements Initializable {
 
             calculateDaysDifference();
             getAmountPaid();
-            getInterestRatio();
+            getEffectiveInterestRate();
             calculateInterestAmount();
             calculateBaseQuota();
 
@@ -317,7 +407,7 @@ public class MainWindowController implements Initializable {
                     paymentDateOutput != null &&
                     daysDifferenceOutput != null &&
                     amountPaidOutput != null &&
-                    interestRatioOutput != null &&
+                    interestRateOutput != null &&
                     interestAmountOutput != null &&
                     baseAmountOutput != null) {
 
@@ -327,7 +417,7 @@ public class MainWindowController implements Initializable {
                     summaryParams[1] = paymentDateOutput;
                     summaryParams[2] = daysDifferenceOutput;
                     summaryParams[3] = amountPaidOutput;
-                    summaryParams[4] = interestRatioOutput;
+                    summaryParams[4] = interestRateOutput;
                     if (interestAmount != interestAmountRounded) {
                         summaryParams[5] = interestAmountOutput + " (" + interestAmountRoundedOutput + ")";
                         summaryParams[6] = baseAmountOutput + " (" + baseAmountRoundedOutput + ")";
