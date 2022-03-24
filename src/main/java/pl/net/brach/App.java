@@ -8,12 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class App extends Application {
@@ -22,12 +18,6 @@ public class App extends Application {
 
     private static final String BRACHSOFT_TITLE = "BRACHSoft - Odsetki podatkowe v.1.1";
     private static final String ICON_PATH = "pl/net/brach/brachs.png";
-//    private static final String COMMA_DELIMITER = ",";
-
-//    private static final String HEADER_START_DATE_NAME = "okresOd";
-//    private static final String HEADER_END_DATE_NAME = "okresDo";
-//    private static final String HEADER_RATE_NAME = "stopa";
-
     private static Scene scene;
     private static Parent root;
 
