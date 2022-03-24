@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/Rates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/Rates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/SummaryWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/SummaryWindow.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,16 +297,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/pl/net/brach/Rates.java</url>
           <line>63</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java</url>
-          <line>294</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java</url>
-          <line>350</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

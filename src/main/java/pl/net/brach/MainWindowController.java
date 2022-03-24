@@ -278,6 +278,7 @@ public class MainWindowController implements Initializable {
         long daysSpentSum = 0;
 
         daysBetweenPaymentDeadlineAndPaymentDate = ChronoUnit.DAYS.between(effectivePaymentDeadline, effectivePaymentDate);
+
         daysLeftToSpend = daysBetweenPaymentDeadlineAndPaymentDate;
 
         for (int i = 1; i < rates.ratesFromFile.size(); i++) { //Start from i = 1, because at i = 0 is header
@@ -347,9 +348,7 @@ public class MainWindowController implements Initializable {
             intRate += Double.parseDouble((daysSpentArrayList.get(j).toString())) * Double.parseDouble(ratesArrayList.get(j).toString());
         }
 
-        // (interestRate == 0) {
-            interestRate = intRate / daysSpentSum;
-        //}
+        interestRate = intRate / daysSpentSum;
         daysDifference = daysSpentSum;
 
         System.out.println("Calculated effective interest rate: " + interestRate);
