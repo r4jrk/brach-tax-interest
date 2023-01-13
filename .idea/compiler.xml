@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="OdsetkiUstawowe" />
-        <module name="OdsetkiPodatkowe" />
+        <module name="TaxInterest" />
       </profile>
     </annotationProcessing>
   </component>

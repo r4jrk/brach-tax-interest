@@ -1,27 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>pl.net.brach</groupId>
-    <artifactId>OdsetkiPodatkowe</artifactId>
-    <version>1.1</version>
+    <artifactId>TaxInterest</artifactId>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>19</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
+            <version>19</version>
         </dependency>
     </dependencies>
 
@@ -31,9 +34,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-                <configuration>
-                    <release>8</release>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -48,7 +48,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <mainClass>pl.net.brach.App</mainClass>
+                            <mainClass>pl.net.brach.TaxInterest</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -60,7 +60,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>pl.net.brach.App</mainClass>
+                            <mainClass>pl.net.brach.TaxInterest</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

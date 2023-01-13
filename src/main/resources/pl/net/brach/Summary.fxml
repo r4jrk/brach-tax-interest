@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpSummaryWindow" prefHeight="423.0" prefWidth="461.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pl.net.brach.SummaryWindowController">
+<BorderPane fx:id="bpSummaryWindow" prefHeight="423.0" prefWidth="461.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="pl.net.brach.SummaryController">
    <left>
       <HBox prefHeight="229.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
    </left>

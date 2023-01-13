@@ -32,7 +32,7 @@ public class MainWindowController implements Initializable {
     private static final double INTEREST_AMOUNT_THRESHOLD = 8.7; //8,70 zł
     private static final List<String> DATE_FORMATS = Arrays.asList("dd-MM-yyyy", "dd/MM/yyyy", "ddMMyyyy", "dd.MM.yyyy",
             "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMdd", "yyyy.MM.dd");
-    private static final String RATES_FILE_DATE_FORMAT = "yyyy-MM-dd";
+    private static final String NBP_API_LINK = "http://api.nbp.pl/api/exchangerates/rates/a/EUR/";
 
     @FXML
     public BorderPane bpMainWindow;
@@ -68,7 +68,7 @@ public class MainWindowController implements Initializable {
     private String baseAmountRoundedOutput;
 
     //Rates
-    private Rates rates;
+    private ExchangeRates rates;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,7 +84,7 @@ public class MainWindowController implements Initializable {
         setupDatePicker(dpPaymentDeadline);
         setupDatePicker(dpPaymentDate);
 
-        rates = new Rates();
+        rates = new ExchangeRates();
     }
 
     private Stage getCurrentStage() {
@@ -205,14 +205,12 @@ public class MainWindowController implements Initializable {
     }
 
     private LocalDate checkForBankHolidays(LocalDate date) {
-        String NBP_API_LINK = "http://api.nbp.pl/api/exchangerates/rates/a/EUR/";
-        String NBP_API_DATE_PATTERN = "yyyy-MM-dd";
         int RETRY_COUNT = 10;
 
         int loopCount = 0;
         String apiData = "";
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(NBP_API_DATE_PATTERN, Locale.ENGLISH);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(DATE_FORMATS.get(4), Locale.ENGLISH);
 
         while (true) {
             try {
@@ -249,7 +247,7 @@ public class MainWindowController implements Initializable {
         }
 
         return LocalDate.parse(apiData.substring(apiData.indexOf("effectiveDate") + 16, apiData.indexOf("[") + 51),
-                DateTimeFormatter.ofPattern(NBP_API_DATE_PATTERN));
+                DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
     }
 
     private void getAmountPaid() {
@@ -284,12 +282,12 @@ public class MainWindowController implements Initializable {
         for (int i = 1; i < rates.ratesFromFile.size(); i++) { //Start from i = 1, because at i = 0 is header
 
             if (!rates.ratesFromFile.get(i).get(1).equals("")) { //For last period in Rates CSV endDate is empty, hence assign today's date to ratesPeriodEndDate
-                ratesPeriodEndDate = LocalDate.parse(rates.ratesFromFile.get(i).get(1), DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
+                ratesPeriodEndDate = LocalDate.parse(rates.ratesFromFile.get(i).get(1), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
             } else {
                 ratesPeriodEndDate = LocalDate.now();
             }
 
-            ratesPeriodStartDate = LocalDate.parse(rates.ratesFromFile.get(i).get(0), DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
+            ratesPeriodStartDate = LocalDate.parse(rates.ratesFromFile.get(i).get(0), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
 
             daysBetweenPaymentDeadlineAndPeriodEnd = ChronoUnit.DAYS.between(effectivePaymentDeadline, ratesPeriodEndDate);
 
@@ -350,8 +348,6 @@ public class MainWindowController implements Initializable {
 
         interestRate = intRate / daysSpentSum;
         daysDifference = daysSpentSum;
-
-        System.out.println("Calculated effective interest rate: " + interestRate);
 
         interestRateOutput = String.format("%.2f", interestRate) + " %";
 
@@ -425,7 +421,7 @@ public class MainWindowController implements Initializable {
                         summaryParams[6] = baseAmountOutput;
                     }
 
-                    App.displaySummary(summaryParams);
+                    TaxInterest.displaySummary(summaryParams);
                 } else if (daysDifference == 0) {
                     System.out.println("Płatność wykonano w dniu wymagalności.");
                 } else {

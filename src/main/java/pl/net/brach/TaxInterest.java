@@ -9,17 +9,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class App extends Application {
+public class TaxInterest extends Application {
 
-    public static List<List<String>> records = new ArrayList<>();
-
-    private static final String BRACHSOFT_TITLE = "BRACHSoft - Odsetki podatkowe v.1.1";
-    private static final String ICON_PATH = "pl/net/brach/brachs.png";
-    private static Scene scene;
-    private static Parent root;
+    static final String BRACHSOFT_TITLE = "BRACHSoft - Odsetki podatkowe v.1.2";
+    static final String ICON_PATH = "pl/net/brach/brachlogo.png";
+    static final String STYLE_PATH = "pl/net/brach/style.css";
 
     public static void main(String[] args) {
         launch();
@@ -27,9 +22,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainWindow.fxml"));
-        root = (Parent) fxmlLoader.load();
-        scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("MainWindow.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(STYLE_PATH);
+
         stage.setTitle(BRACHSOFT_TITLE);
         stage.getIcons().add(new Image(ICON_PATH));
         stage.setScene(scene);
@@ -38,17 +36,21 @@ public class App extends Application {
     }
 
     protected static void displaySummary(String[] args) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("SummaryWindow.fxml"));
-        Pane root = (Pane) fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(TaxInterest.class.getResource("Summary.fxml"));
+        Pane root = fxmlLoader.load();
+
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(STYLE_PATH);
+
         Stage stage = new Stage();
-        stage.setScene(scene);
+
         stage.setTitle(BRACHSOFT_TITLE + " - Podsumowanie");
         stage.getIcons().add(new Image(ICON_PATH));
+        stage.setScene(scene);
         stage.setResizable(false);
 
-        SummaryWindowController swc = fxmlLoader.getController();
-        swc.populateSummaryFields(args);
+        SummaryController summaryController = fxmlLoader.getController();
+        summaryController.populateSummaryFields(args);
 
         stage.show();
     }
