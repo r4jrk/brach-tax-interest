@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="Deleted .vs folder">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/TaxInterest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/Rates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/ExchangeRates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/SummaryWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/Summary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/brachs.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/brachicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/OdsetkiPodatkowe-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/Rates.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/Rates.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-    </list>
+    <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="Deleted .vs folder, optimized stuff a bit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -301,7 +282,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671189647447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Deleted .vs folder, optimized stuff a bit">
+      <created>1673631965811</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673631965811</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Deleted .vs folder, optimized stuff a bit">
+      <created>1673632075336</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673632075336</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -348,7 +343,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted .vs folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted .vs folder" />
+    <MESSAGE value="Deleted .vs folder, optimized stuff a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted .vs folder, optimized stuff a bit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/pl/net/brach/primary.fxml" />
