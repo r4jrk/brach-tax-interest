@@ -20,7 +20,7 @@ public class InterestRates {
 
     private static final String RATES_FILE_DATE_FORMAT = "yyyy-MM-dd";
 
-    public List<List<String>> ratesFromFile = new ArrayList<>();
+    private List<List<String>> ratesFromFile = new ArrayList<>();
 
     public InterestRates() {
             FileReader ratesFileReader = validateRatesFileExists();
@@ -32,6 +32,10 @@ public class InterestRates {
             } else {
                 System.out.println("Program nie będzie działał prawidłowo");
             }
+    }
+
+    public List<List<String>> getInterestRates() {
+        return ratesFromFile;
     }
 
     private FileReader validateRatesFileExists() {

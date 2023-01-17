@@ -63,7 +63,7 @@ public class MainWindowController implements Initializable {
     private String baseAmountRoundedOutput;
 
     //Rates
-    private InterestRates rates;
+    //private InterestRates rates;
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,7 +79,7 @@ public class MainWindowController implements Initializable {
         setupDatePicker(dpPaymentDeadline);
         setupDatePicker(dpPaymentDate);
 
-        rates = new InterestRates();
+        //rates = new InterestRates();
     }
 
     private Stage getCurrentStage() {
@@ -253,6 +253,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void getEffectiveInterestRate() {
+        List<List<String>> ratesFromFile = new InterestRates().getInterestRates();
+
         ArrayList daysSpentArrayList = new ArrayList();
         ArrayList ratesArrayList = new ArrayList();
 
@@ -273,15 +275,15 @@ public class MainWindowController implements Initializable {
 
             daysLeftToSpend = daysBetweenPaymentDeadlineAndPaymentDate;
 
-            for (int i = 1; i < rates.ratesFromFile.size(); i++) { //Start from i = 1, because at i = 0 is header
+            for (int i = 1; i < ratesFromFile.size(); i++) { //Start from i = 1, because at i = 0 is header
 
-                if (!rates.ratesFromFile.get(i).get(1).equals("")) { //For last period in Rates CSV endDate is empty, hence assign today's date to ratesPeriodEndDate
-                    ratesPeriodEndDate = LocalDate.parse(rates.ratesFromFile.get(i).get(1), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
+                if (!ratesFromFile.get(i).get(1).equals("")) { //For last period in Rates CSV endDate is empty, hence assign today's date to ratesPeriodEndDate
+                    ratesPeriodEndDate = LocalDate.parse(ratesFromFile.get(i).get(1), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
                 } else {
                     ratesPeriodEndDate = LocalDate.now();
                 }
 
-                ratesPeriodStartDate = LocalDate.parse(rates.ratesFromFile.get(i).get(0), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
+                ratesPeriodStartDate = LocalDate.parse(ratesFromFile.get(i).get(0), DateTimeFormatter.ofPattern(DATE_FORMATS.get(4)));
 
                 daysBetweenPaymentDeadlineAndPeriodEnd = ChronoUnit.DAYS.between(effectivePaymentDeadline, ratesPeriodEndDate);
 
@@ -290,7 +292,7 @@ public class MainWindowController implements Initializable {
                         (effectivePaymentDeadline.isBefore(ratesPeriodEndDate) || effectivePaymentDeadline.isEqual(ratesPeriodEndDate)) &&
                         (effectivePaymentDate.isBefore(ratesPeriodEndDate) || effectivePaymentDate.isEqual(ratesPeriodEndDate))) { //Just one period
                     long daysSpent = ChronoUnit.DAYS.between(effectivePaymentDeadline, effectivePaymentDate);
-                    interestRate = Double.parseDouble(rates.ratesFromFile.get(i).get(2));
+                    interestRate = Double.parseDouble(ratesFromFile.get(i).get(2));
                     daysSpentArrayList.add(daysSpent);
                     ratesArrayList.add(interestRate);
                     break;
@@ -298,7 +300,7 @@ public class MainWindowController implements Initializable {
                         && (effectivePaymentDate.isAfter(ratesPeriodEndDate) || effectivePaymentDate.isEqual(ratesPeriodEndDate))) {
                 } else { //Two or more periods
                     periodCounter++;
-                    nominalRate = Double.parseDouble(rates.ratesFromFile.get(i).get(2));
+                    nominalRate = Double.parseDouble(ratesFromFile.get(i).get(2));
 
                     System.out.println("Rates period " + periodCounter + ": Start date: " + ratesPeriodStartDate
                             + ", End date: " + ratesPeriodEndDate + ". Nominal rate: " + nominalRate);
@@ -309,7 +311,7 @@ public class MainWindowController implements Initializable {
                         daysSpent = daysBetweenPaymentDeadlineAndPeriodEnd + 1;
                         daysLeftToSpend = daysLeftToSpend - daysSpent;
                         daysSpentArrayList.add(daysSpent);
-                        ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                        ratesArrayList.add(Double.parseDouble(ratesFromFile.get(i).get(2)));
                         System.out.println("Days spent in Period 1: " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
                     } else { //Second or further period
                         daysInCurrentPeriod = ChronoUnit.DAYS.between(ratesPeriodStartDate, ratesPeriodEndDate);
@@ -319,13 +321,13 @@ public class MainWindowController implements Initializable {
                             daysSpent = daysInCurrentPeriod;
                             daysLeftToSpend = daysLeftToSpend - daysSpent;
                             daysSpentArrayList.add(daysSpent);
-                            ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                            ratesArrayList.add(Double.parseDouble(ratesFromFile.get(i).get(2)));
                             System.out.println("Days spent in Period " + periodCounter + ": " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
                         } else { //There won't be another period
                             daysSpent = daysLeftToSpend;
                             daysLeftToSpend = 0;
                             daysSpentArrayList.add(daysSpent);
-                            ratesArrayList.add(Double.parseDouble(rates.ratesFromFile.get(i).get(2)));
+                            ratesArrayList.add(Double.parseDouble(ratesFromFile.get(i).get(2)));
                             System.out.println("Days spent in Period " + periodCounter + ": " + daysSpent + ", " + "days left to spend: " + daysLeftToSpend);
                             break;
                         }
