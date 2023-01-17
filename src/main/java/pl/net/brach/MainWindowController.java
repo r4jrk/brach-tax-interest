@@ -62,9 +62,6 @@ public class MainWindowController implements Initializable {
     private String baseAmountOutput;
     private String baseAmountRoundedOutput;
 
-    //Rates
-    //private InterestRates rates;
-
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
         //Populate interest rates in to a Combo Box
@@ -79,7 +76,7 @@ public class MainWindowController implements Initializable {
         setupDatePicker(dpPaymentDeadline);
         setupDatePicker(dpPaymentDate);
 
-        //rates = new InterestRates();
+        new InterestRates();
     }
 
     private Stage getCurrentStage() {

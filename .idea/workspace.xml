@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="Deleted .vs folder, fixed icon path">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/InterestRates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/InterestRates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/stopy.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
