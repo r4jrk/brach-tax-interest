@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExchangeRates {
+public class InterestRates {
 
     private static final String DELIMITER = ",";
 
@@ -22,13 +22,13 @@ public class ExchangeRates {
 
     public List<List<String>> ratesFromFile = new ArrayList<>();
 
-    public ExchangeRates() {
+    public InterestRates() {
             FileReader ratesFileReader = validateRatesFileExists();
             if (ratesFileReader != null) {
                 ratesFromFileFileContents(ratesFileReader);
                 validateRatesFileStructure();
-                //validateRatesFileDateFormat();
-                //validateRatesFileChronology();
+                validateRatesFileDateFormat();
+                validateRatesFileChronology();
             } else {
                 System.out.println("Program nie będzie działał prawidłowo");
             }
@@ -51,6 +51,7 @@ public class ExchangeRates {
 
         FileReader fileReader = null;
         try {
+            assert ratesFile != null;
             fileReader = new FileReader(ratesFile);
         } catch (FileNotFoundException e) {
             System.out.println("Nie znaleziono pliku " + INTEREST_RATES_FILE_NAME);
@@ -61,7 +62,7 @@ public class ExchangeRates {
 
     private void ratesFromFileFileContents(FileReader fileReader) {
         BufferedReader br = new BufferedReader(fileReader);
-        String line = "";
+        String line;
         while (true) {
             try {
                 if ((line = br.readLine()) != null) {
@@ -82,11 +83,11 @@ public class ExchangeRates {
             if (!ratesFromFile.get(0).contains(HEADER_END_DATE_NAME)) throw new Exception();
             if (!ratesFromFile.get(0).contains(HEADER_RATE_NAME)) throw new Exception();
         } catch (Exception e) {
-            System.out.println(String.format("Plik  " + INTEREST_RATES_FILE_NAME + "  ma nieprawidłową strukturę. " +
+            System.out.printf("Plik  " + INTEREST_RATES_FILE_NAME + "  ma nieprawidłową strukturę. " +
                             "Spodziewane nagłówki: %1$s, %2$s, %3$s. " +
                             "Odczytane nagłówki: " + ratesFromFile.get(0).get(0) + ", "
-                            + ratesFromFile.get(0).get(1) + ", " + ratesFromFile.get(0).get(2),
-                    HEADER_START_DATE_NAME, HEADER_END_DATE_NAME, HEADER_RATE_NAME));
+                            + ratesFromFile.get(0).get(1) + ", " + ratesFromFile.get(0).get(2) + "%n",
+                    HEADER_START_DATE_NAME, HEADER_END_DATE_NAME, HEADER_RATE_NAME);
         }
     }
 
@@ -96,7 +97,7 @@ public class ExchangeRates {
             for (int j = 0; j < ratesFromFileRow.size() - 1; j++) { //Do not parse last record since there are rate values there
                 String readDateString = ratesFromFileRow.get(j);
                 if (readDateString != null && !readDateString.equals("")) {
-                    LocalDate parsedDate = LocalDate.parse(readDateString, DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
+                    LocalDate.parse(readDateString, DateTimeFormatter.ofPattern(RATES_FILE_DATE_FORMAT));
                 }
             }
         }
@@ -116,20 +117,22 @@ public class ExchangeRates {
                         startDate = parsedDate;
                     } else {
                         endDate = parsedDate;
-                        if (startDate.isAfter(endDate)) {
-                            try {
-                                throw new Exception();
-                            } catch (Exception e) {
-                                System.out.println("Nieprawidłowa chronologia dat. " +
-                                        "Początkowa data okresu jest późniejsza od końcowej daty okresu");
-                            }
-                        } else {
-                            if (!endDate.isAfter(startDate)) {
+                        if (startDate != null && endDate != null) {
+                            if (startDate.isAfter(endDate)) {
                                 try {
                                     throw new Exception();
                                 } catch (Exception e) {
-                                    System.out.println("Nieprawidłowa chronologia dat. Początkowa data okresu jest " +
-                                            "taka sama jak końcowa data okresu");
+                                    System.out.println("Nieprawidłowa chronologia dat. " +
+                                            "Początkowa data okresu jest późniejsza od końcowej daty okresu");
+                                }
+                            } else {
+                                if (!endDate.isAfter(startDate)) {
+                                    try {
+                                        throw new Exception();
+                                    } catch (Exception e) {
+                                        System.out.println("Nieprawidłowa chronologia dat. Początkowa data okresu jest " +
+                                                "taka sama jak końcowa data okresu");
+                                    }
                                 }
                             }
                         }

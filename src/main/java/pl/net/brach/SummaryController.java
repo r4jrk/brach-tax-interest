@@ -14,14 +14,21 @@ public class SummaryController {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
 
     @FXML
-    public Button bClose;
-    public Label lsPaymentDeadline;
-    public Label lsPaymentDate;
-    public Label lsDayCount;
-    public Label lsPaidAmount;
-    public Label lsInterestRate;
-    public Label lsInterestAmount;
-    public Label lsBaseAmount;
+    private Button bClose;
+    @FXML
+    private Label lsPaymentDeadline;
+    @FXML
+    private Label lsPaymentDate;
+    @FXML
+    private Label lsDayCount;
+    @FXML
+    private Label lsPaidAmount;
+    @FXML
+    private Label lsInterestRate;
+    @FXML
+    private Label lsInterestAmount;
+    @FXML
+    private Label lsBaseAmount;
 
     public void populateSummaryFields(String[] params) {
         lsPaymentDeadline.setText(LocalDate.parse(params[0]).format(DATE_FORMAT));

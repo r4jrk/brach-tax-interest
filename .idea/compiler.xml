@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="OdsetkiUstawowe" />
         <module name="TaxInterest" />
+        <module name="brach-tax-interest" />
       </profile>
     </annotationProcessing>
   </component>

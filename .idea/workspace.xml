@@ -4,9 +4,29 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="Deleted .vs folder">
+    <list default="true" id="989ccb4a-91fe-46e8-877f-fafb8c20ec05" name="Default Changelist" comment="Deleted .vs folder, fixed icon path">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/TaxInterest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/TaxInterest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/ExchangeRates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/InterestRates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/net/brach/SummaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pl/net/brach/Summary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pl/net/brach/Summary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/TaxInterest-1.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/TaxInterest-1.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/ExchangeRates.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/ExchangeRates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/MainWindowController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/Rates.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/Summary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/Summary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/SummaryWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/TaxInterest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/net/brach/TaxInterest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/net/brach/brachs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,30 +136,30 @@
         <subPane>
           <expand>
             <path>
-              <item name="odsetkipodatkowe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brach-interest-calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="brach-tax-interest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="brach-tax-interest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="odsetkipodatkowe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brach-interest-calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="brach-tax-interest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="brach-tax-interest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="odsetkipodatkowe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brach-interest-calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="brach-tax-interest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="brach-tax-interest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="odsetkipodatkowe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brach-interest-calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="brach-tax-interest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="brach-tax-interest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="odsetkipodatkowe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="brach-interest-calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="brach-tax-interest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="brach-tax-interest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
@@ -162,18 +182,18 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jurekr/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/repos/brach-tax-interest&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="RunManager" selected="JAR Application.TaxInterest-1.2.jar">
-    <configuration name="TaxInterest" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="pl.net.brach.TaxInterest" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="pl.net.brach.TaxInterest" />
-      <module name="TaxInterest" />
+      <module name="brach-tax-interest" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="pl.net.brach.*" />
@@ -184,38 +204,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OdsetkiPodatkowe-1.1.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/target/OdsetkiPodatkowe-1.1.jar" />
-      <method v="2" />
-    </configuration>
     <configuration name="TaxInterest-1.2.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/TaxInterest-1.2.jar" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="odsetkipodatkowe []" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+    <configuration name="TaxInterest []" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings">
@@ -253,16 +247,37 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Application.TaxInterest" />
-      <item itemvalue="JAR Application.OdsetkiPodatkowe-1.1.jar" />
+      <item itemvalue="Application.pl.net.brach.TaxInterest" />
       <item itemvalue="JAR Application.TaxInterest-1.2.jar" />
-      <item itemvalue="Maven.odsetkipodatkowe []" />
+      <item itemvalue="Maven.TaxInterest []" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.TaxInterest-1.2.jar" />
-        <item itemvalue="JAR Application.OdsetkiPodatkowe-1.1.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671189647447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Deleted .vs folder, fixed icon path">
+      <created>1673856308067</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673856308067</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -332,7 +354,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted .vs folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted .vs folder" />
+    <MESSAGE value="Deleted .vs folder, fixed icon path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted .vs folder, fixed icon path" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/pl/net/brach/primary.fxml" />
